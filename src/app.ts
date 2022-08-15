@@ -32,7 +32,7 @@ It's called type inference
 
 // Types in functions --------------------------------------------------------------------------------------------------------------------------------
 
-const add = (a: number, b: number) => a + b
+// const add = (a: number, b: number) => a + b
 
 //console.log(add(1,2))
 
@@ -45,8 +45,8 @@ const add = (a: number, b: number) => a + b
 
 // End of types in functions -------------------------------------------------------------------------------------------------------------------------
 
-// Examples ------------------------------------------------------------------------------------------------------------------------------------------
-
+// Example ------------------------------------------------------------------------------------------------------------------------------------------
+/*
 const input1El: HTMLInputElement = document.querySelector('.input1')
 const input2El: HTMLInputElement = document.querySelector('.input2')
 const btnEl = document.querySelector('.btn')
@@ -63,17 +63,38 @@ btnEl.addEventListener(
 
     }
 )
-
-// End of examples -----------------------------------------------------------------------------------------------------------------------------------
+*/
+// End of example -----------------------------------------------------------------------------------------------------------------------------------
 
 // Union types ---------------------------------------------------------------------------------------------------------------------------------------
 
-// If we want we can declare more than one ype in variable using '|' not '/'
+// If we want we can declare more than one type in variable using '|' not '/'
 const logAge = (age: number | string) => {
-    console.log(`Hej mam ${age} lat!`)
+    console.log(`Hej mam ${age} lat!`) 
 }
 
 logAge(34)
 logAge('trzydzieści cztery')
 
 // End of union types --------------------------------------------------------------------------------------------------------------------------------
+
+// Boolean example -----------------------------------------------------------------------------------------------------------------------------------
+
+const btnEl = document.querySelector('.btn')
+const calcPrice = (originalPrice: number, hasDiscount: boolean) => {
+    return hasDiscount ? originalPrice * 0.8 : originalPrice
+}
+
+btnEl.addEventListener(
+    'click',
+    () => {
+
+        const originalPrice: number = 100
+        // method URLSearchParams return 'string' type, then if we declare hasDiscount as boolean it will throw Error
+        const hasDiscount: boolean = new URLSearchParams(window.location.search).get('discount') === 'true'
+        console.log(calcPrice(originalPrice, hasDiscount))
+
+    }
+)
+
+// End of boolean example ----------------------------------------------------------------------------------------------------------------------------
