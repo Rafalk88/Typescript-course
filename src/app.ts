@@ -10,6 +10,7 @@ console.log('Działający TS!')
 If not defined type, TS will define it as first type that is added to variable
 in this case type of age is 'number' and if another type will be added, there will
 be and Error
+It's called type inference
 */
 //let age = 33
 
@@ -64,3 +65,15 @@ btnEl.addEventListener(
 )
 
 // End of examples -----------------------------------------------------------------------------------------------------------------------------------
+
+// Union types ---------------------------------------------------------------------------------------------------------------------------------------
+
+// If we want we can declare more than one ype in variable using '|' not '/'
+const logAge = (age: number | string) => {
+    console.log(`Hej mam ${age} lat!`)
+}
+
+logAge(34)
+logAge('trzydzieści cztery')
+
+// End of union types --------------------------------------------------------------------------------------------------------------------------------
