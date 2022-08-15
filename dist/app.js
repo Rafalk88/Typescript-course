@@ -50,21 +50,58 @@ btnEl.addEventListener(
 // End of example -----------------------------------------------------------------------------------------------------------------------------------
 // Union types ---------------------------------------------------------------------------------------------------------------------------------------
 // If we want we can declare more than one type in variable using '|' not '/'
-const logAge = (age) => {
-    console.log(`Hej mam ${age} lat!`);
-};
-logAge(34);
-logAge('trzydzieści cztery');
+/*
+const logAge = (age: number | string) => {
+    console.log(`Hej mam ${age} lat!`)
+}
+
+logAge(34)
+logAge('trzydzieści cztery')
+*/
 // End of union types --------------------------------------------------------------------------------------------------------------------------------
 // Boolean example -----------------------------------------------------------------------------------------------------------------------------------
-const btnEl = document.querySelector('.btn');
-const calcPrice = (originalPrice, hasDiscount) => {
-    return hasDiscount ? originalPrice * 0.8 : originalPrice;
-};
-btnEl.addEventListener('click', () => {
-    const originalPrice = 100;
-    // method URLSearchParams return 'string' type, then if we declare hasDiscount as boolean it will throw Error
-    const hasDiscount = new URLSearchParams(window.location.search).get('discount') === 'true';
-    console.log(calcPrice(originalPrice, hasDiscount));
-});
+/*
+const btnEl = document.querySelector('.btn')
+const calcPrice = (originalPrice: number, hasDiscount: boolean) => {
+    return hasDiscount ? originalPrice * 0.8 : originalPrice
+}
+
+btnEl.addEventListener(
+    'click',
+    () => {
+
+        const originalPrice: number = 100
+        // method URLSearchParams return 'string' type, then if we declare hasDiscount as boolean it will throw Error
+        const hasDiscount: boolean = new URLSearchParams(window.location.search).get('discount') === 'true'
+        console.log(calcPrice(originalPrice, hasDiscount))
+
+    }
+)
+*/
 // End of boolean example ----------------------------------------------------------------------------------------------------------------------------
+// Array type example --------------------------------------------------------------------------------------------------------------------------------
+const tasksContainerEl = document.querySelector('.tasks');
+const taskNameInput = document.querySelector('.name');
+const btnEl = document.querySelector('button');
+// string[] - this is table of strings
+const tasks = ['Wyrzuć śmieci', 'Pójść na siłkę', 'Nakarmić psa'];
+// Error Argument of type 'number' is not assignable to parameter of type 'string' .ts(2345)
+// tasks.push(10)
+const render = () => {
+    tasksContainerEl.innerHTML = '';
+    tasks.forEach(task => {
+        const taskEl = document.createElement('li');
+        taskEl.innerText = task;
+        tasksContainerEl.appendChild(taskEl);
+    });
+};
+const addTask = (task) => {
+    tasks.push(task);
+};
+btnEl.addEventListener('click', (e) => {
+    e.preventDefault();
+    addTask(taskNameInput.value);
+    render();
+});
+render();
+// End of array type example -------------------------------------------------------------------------------------------------------------------------

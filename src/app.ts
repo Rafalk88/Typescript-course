@@ -69,17 +69,18 @@ btnEl.addEventListener(
 // Union types ---------------------------------------------------------------------------------------------------------------------------------------
 
 // If we want we can declare more than one type in variable using '|' not '/'
+/*
 const logAge = (age: number | string) => {
     console.log(`Hej mam ${age} lat!`) 
 }
 
 logAge(34)
 logAge('trzydzieści cztery')
-
+*/
 // End of union types --------------------------------------------------------------------------------------------------------------------------------
 
 // Boolean example -----------------------------------------------------------------------------------------------------------------------------------
-
+/*
 const btnEl = document.querySelector('.btn')
 const calcPrice = (originalPrice: number, hasDiscount: boolean) => {
     return hasDiscount ? originalPrice * 0.8 : originalPrice
@@ -96,5 +97,52 @@ btnEl.addEventListener(
 
     }
 )
-
+*/
 // End of boolean example ----------------------------------------------------------------------------------------------------------------------------
+
+// Array type example --------------------------------------------------------------------------------------------------------------------------------
+
+const tasksContainerEl: HTMLElement = document.querySelector('.tasks')
+const taskNameInput: HTMLInputElement = document.querySelector('.name')
+const btnEl: HTMLButtonElement = document.querySelector('button')
+
+// string[] - this is table of strings
+const tasks: string[] = ['Wyrzuć śmieci', 'Pójść na siłkę', 'Nakarmić psa']
+
+// Error Argument of type 'number' is not assignable to parameter of type 'string' .ts(2345)
+// tasks.push(10)
+
+const render = () => {
+
+    tasksContainerEl.innerHTML = ''
+    tasks.forEach(task => {
+
+        const taskEl: HTMLElement = document.createElement('li')
+        taskEl.innerText = task
+        tasksContainerEl.appendChild(taskEl)
+
+    })
+
+}
+
+const addTask = (task: string) => {
+
+    tasks.push(task)
+
+}
+
+btnEl.addEventListener(
+    'click',
+    (e: Event) => {
+
+        e.preventDefault()
+        addTask(taskNameInput.value)
+        render()
+
+    }
+)
+
+render()
+
+// End of array type example -------------------------------------------------------------------------------------------------------------------------
+
