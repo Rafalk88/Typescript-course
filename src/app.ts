@@ -13,19 +13,19 @@ be and Error
 */
 //let age = 33
 
-let age: number = 33
+//let age: number = 33
 
-age = 34
-age = 34.5 // no Error
+//age = 34
+//age = 34.5 // no Error
 
 // Error: Type 'string' is not assignable to type 'number' .ts(2322)
 // age = 'trzydzieści trzy'
 
-console.log(age)
+//console.log(age)
 
-let ageAsString: string = 'trzydzieści trzy' // '' lub "" bez znaczenia, którego znacznika użyjemy
+//let ageAsString: string = 'trzydzieści trzy' // '' lub "" bez znaczenia, którego znacznika użyjemy
 
-ageAsString = `${age}` // ES6 no Error
+//ageAsString = `${age}` // ES6 no Error
 
 // End of primitive values ---------------------------------------------------------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ ageAsString = `${age}` // ES6 no Error
 
 const add = (a: number, b: number) => a + b
 
-console.log(add(1,2))
+//console.log(add(1,2))
 
 // Error: Argument of type 'string' is not assignable to parameter of type 'number' .ts(2322)
 // but converstion still work and JS will concatenate two variables
@@ -46,6 +46,21 @@ console.log(add(1,2))
 
 // Examples ------------------------------------------------------------------------------------------------------------------------------------------
 
+const input1El: HTMLInputElement = document.querySelector('.input1')
+const input2El: HTMLInputElement = document.querySelector('.input2')
+const btnEl = document.querySelector('.btn')
 
+btnEl.addEventListener(
+    'click',
+    () => {
+
+        // without typing inputs the value will throw Error: property 'value' does not exist on type 'Element' .ts(2339)
+        // querySelector return 'Element' type
+        // after typing HTMLInputElement to consts thete will be Error because value return 'string' type and function is declared 'number' type
+        const sum = add(Number(input1El.value), Number(input2El.value))
+        console.log(sum)
+
+    }
+)
 
 // End of examples -----------------------------------------------------------------------------------------------------------------------------------
